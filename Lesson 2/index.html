@@ -23,7 +23,7 @@
         </div>
         <div class="list">
           <div class="item done" v-for="(taskDone, i) in tasksDone">
-            <input @change="taskUncheck(i)" :key="taskDone" type="checkbox" checked>
+            <input @change="taskUncheck(i)" v-model="taskDone.done" :key="taskDone" type="checkbox" checked>
             {{taskDone.text}}
           </div>
         </div>
