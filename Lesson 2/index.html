@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/vue@next"></script>
+    <script defer src="vue.js"></script>
+</head>
+<body>
+    <div id="app" v-cloak>
+        <h1>Список задач</h1>
+        <div v-if="count() == 0">Вы пеликолепны</div>
+        <div v-else-if="count() == 1">Остался последний рывок</div>
+        <div v-else>Осталось сделать задач: <span class="counter">{{count()}}</span></div>
+        <div class="list">
+          <div class="item" v-for="(task, i) of tasks">
+            <input type="checkbox" v-model="task.done" :key="task" @change="taskCheck(i)">
+            {{task.text}}
+          </div>
+        </div>
+        <div class="list">
+          <div class="item done" v-for="(taskDone, i) in tasksDone">
+            <input @change="taskUncheck(i)" :key="taskDone" type="checkbox" checked>
+            {{taskDone.text}}
+          </div>
+        </div>
+        <div class="form">
+          <input v-model="message"  @keyup.enter="addTask" @input="inputCheck">
+          <button :type="btnType" @click="addTask" :disabled="btnDiss">Добавить</button>
+        </div>
+        <transition name="bounce">
+          <img class="img-graz" v-show="count() == 0" src="tumblr-l1iotoyo541qbn8c7_7q9s.jpg" alt="tony-stark">
+        </transition>
+      </div>
+      
+</body>
+</html>

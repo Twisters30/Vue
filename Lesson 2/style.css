@@ -1,0 +1,51 @@
+.list {
+    padding: 20px;
+    border: 1px solid #ccc;
+    margin: 20px 0;
+  }
+  .item {
+    margin: 10px 0;
+  }
+  .done {
+    text-decoration: line-through;
+  }
+  .form {
+    margin: 20px 0;
+  }
+  
+  [v-cloak] {
+    display: none;
+  }
+
+  .img-graz {
+    width: 300px;
+    height: 200px;
+  }
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.bounce-enter-active {
+  animation: bounce-in 0.5s;
+}
+.bounce-leave-active {
+  animation: bounce-in 0.5s reverse;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0) rotate(10deg);
+  }
+  50% {
+    transform: scale(1.25) rotate(-20deg);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
