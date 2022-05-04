@@ -18,10 +18,10 @@
 <script>
 export default {
   name: 'FilterColorsItem',
-  props: ['color', 'selectedColor', 'checkedColor'],
+  props: ['color', 'selectedColor'],
   computed: {
     currentColor() {
-      return this.checkedColor;
+      return this.selectedColor;
     },
   },
   methods: {

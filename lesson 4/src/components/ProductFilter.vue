@@ -50,7 +50,6 @@
             :key="color.id"
             :color="color.hex"
             v-model:selected-color="selectedColor"
-            :checked-color="checkedColor"
           />
         </ul>
       </fieldset>
@@ -149,8 +148,7 @@ export default {
   props: ['priceFrom', 'priceTo', 'categoryId', 'color'],
   data() {
     return {
-      checkedColor: '#73B6EA',
-      selectedColor: null,
+      selectedColor: '#73B6EA',
       currentPriceFrom: 0,
       currentPriceTo: 0,
       currentCategoryId: 0,
@@ -190,8 +188,7 @@ export default {
       this.$emit('update:priceTo', 0);
       this.$emit('update:categoryId', 0);
       this.$emit('update:color', null);
-      this.checkedColor = '#73B6EA';
-      this.selectedColor = null;
+      this.selectedColor = '#73B6EA';
     },
   },
 };
