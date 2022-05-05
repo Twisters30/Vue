@@ -45,12 +45,21 @@
       <fieldset class="form__block">
         <legend class="form__legend">Цвет</legend>
         <ul class="colors">
-          <filter-colors-item
-            v-for="color in colors"
-            :key="color.id"
-            :color="color.hex"
-            v-model:selected-color="selectedColor"
-          />
+          <li class="colors__item"
+              v-for="color in colors"
+              :key="color.id"
+          >
+            <label class="colors__label">
+              <input
+                class="colors__radio sr-only"
+                type="radio"
+                name="color"
+                :value="color.hex"
+                v-model="selectedColor"
+              >
+              <span class="colors__value" :style="{ 'background-color': color.hex }"></span>
+            </label>
+          </li>
         </ul>
       </fieldset>
 
@@ -139,12 +148,10 @@
 
 <script>
 import categories from '../data/categories';
-import FilterColorsItem from './FilterColorsItem.vue';
 import colors from '../data/colors';
 
 export default {
   name: 'ProductFilter',
-  components: { FilterColorsItem },
   props: ['priceFrom', 'priceTo', 'categoryId', 'color'],
   data() {
     return {

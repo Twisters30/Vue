@@ -17,7 +17,7 @@
         v-model:color="picColor"
       />
       <section class="catalog">
-        <product-list :products="products" />
+        <product-list :products="products" :pic-color="picColor"/>
         <base-pagination
           v-model:page="page"
           :count="countProduct"
