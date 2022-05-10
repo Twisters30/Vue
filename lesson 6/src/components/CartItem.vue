@@ -14,23 +14,7 @@
     <span class="product__code">
       Артикул: {{ item.product.id }}
     </span>
-
-    <div class="product__counter form__counter">
-      <button type="button" aria-label="Убрать один товар" @click.prevent="amountDecrement">
-        <svg width="10" height="10" fill="currentColor">
-          <use xlink:href="#icon-minus"></use>
-        </svg>
-      </button>
-
-      <input type="text" v-model="amount" name="count">
-
-      <button type="button" aria-label="Добавить один товар" @click.prevent="amountIncrement">
-        <svg width="10" height="10" fill="currentColor">
-          <use xlink:href="#icon-plus"></use>
-        </svg>
-      </button>
-    </div>
-
+    <product-counter :item="item" />
     <b class="product__price">
       {{ numberFormat(item.amount * item.product.price) }} ₽
     </b>
@@ -51,21 +35,12 @@
 <script>
 import numberFormat from '@/helpers/numberFormat';
 import { mapMutations } from 'vuex';
+import ProductCounter from './ProductCounter.vue';
 
 export default {
   name: 'CartItem',
+  components: { ProductCounter },
   props: ['item'],
-  computed: {
-    amount: {
-      get() {
-        return this.item.amount;
-      },
-      set(value) {
-        this.$store
-          .commit('updateCartProductAmount', { productId: this.item.productId, amount: value });
-      },
-    },
-  },
   methods: {
     amountIncrement() {
       this.$store

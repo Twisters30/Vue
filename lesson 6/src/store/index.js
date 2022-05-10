@@ -1,3 +1,4 @@
+/* eslint-disable */
 import Vuex from 'vuex';
 import products from '@/data/products';
 
@@ -20,16 +21,25 @@ const store = new Vuex.Store({
         });
       }
     },
-    updateCartProductAmount(state, { productId, amount, increment }) {
+    amountIncrement(state, productId) {
       const item = state.cartProduct
         .find((product) => product.productId === productId);
       if (item) {
-        item.amount = amount;
-      }
-      if (increment === 'increment') {
         item.amount += 1;
-      } else if (increment === 'decrement' && item.amount !== 1) {
+      }
+    },
+    amountDecrement(state, productId) {
+      const item = state.cartProduct
+        .find((product) => product.productId === productId);
+      if (item) {
         item.amount -= 1;
+      }
+    },
+    updateCartProductAmount(state, { productId, amount }) {
+      const item = state.cartProduct
+        .find((product) => product.productId === productId);
+      if (item) {
+        item.amount = +amount;
       }
     },
     deleteCartProduct(state, productId) {
@@ -38,6 +48,12 @@ const store = new Vuex.Store({
     },
   },
   getters: {
+    belowAmount(state) {
+      return state.cartProduct
+        .forEach((el) => {
+          if (el.amount < 1) el.amount = 1;
+        });
+    },
     cartDetailProduct(state) {
       return state.cartProduct.map((item) => ({
         ...item,
