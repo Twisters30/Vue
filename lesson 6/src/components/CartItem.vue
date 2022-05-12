@@ -14,7 +14,7 @@
     <span class="product__code">
       Артикул: {{ item.product.id }}
     </span>
-    <product-counter :item="item" />
+    <product-counter v-model:count="productAmount" />
     <b class="product__price">
       {{ numberFormat(item.amount * item.product.price) }} ₽
     </b>
@@ -41,17 +41,23 @@ export default {
   name: 'CartItem',
   components: { ProductCounter },
   props: ['item'],
+  watch: {
+    item(value) {
+      this.productAmount = value.amount < 1 ? 1 : value.amount;
+    },
+  },
+  computed: {
+    productAmount: {
+      get() {
+        return this.item.amount;
+      },
+      set(value) {
+        this.$store.commit('updateCartProductAmount',
+          { productId: this.item.productId, amount: value });
+      },
+    },
+  },
   methods: {
-    amountIncrement() {
-      this.$store
-        .commit('updateCartProductAmount',
-          { productId: this.item.productId, amount: this.item.amount, increment: 'increment' });
-    },
-    amountDecrement() {
-      this.$store
-        .commit('updateCartProductAmount',
-          { productId: this.item.productId, amount: this.item.amount, increment: 'decrement' });
-    },
     ...mapMutations({ deleteProduct: 'deleteCartProduct' }),
     numberFormat,
   },

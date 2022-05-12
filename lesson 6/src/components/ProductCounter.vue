@@ -3,19 +3,23 @@
     <button
       type="button"
       aria-label="Убрать один товар"
-      @click.prevent="amountDecrement(item.productId)"
+      @click.prevent="amount--"
     >
       <svg width="10" height="10" fill="currentColor">
         <use xlink:href="#icon-minus"></use>
       </svg>
     </button>
 
-    <input type="number" v-model="amount" name="count">
+    <input
+      type="number"
+      v-model.number="amount"
+      name="count"
+    >
 
     <button
       type="button"
       aria-label="Добавить один товар"
-      @click.prevent="amountIncrement(item.productId)"
+      @click.prevent="amount++"
     >
       <svg width="10" height="10" fill="currentColor">
         <use xlink:href="#icon-plus"></use>
@@ -25,24 +29,18 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
-
 export default {
   name: 'ProductCounter',
-  props: ['item'],
+  props: ['count'],
   computed: {
     amount: {
       get() {
-        return this.item.amount;
+        return this.count;
       },
       set(value) {
-        this.$store
-          .commit('updateCartProductAmount', { productId: this.item.productId, amount: value });
+        this.$emit('update:count', value);
       },
     },
-  },
-  methods: {
-    ...mapMutations(['amountIncrement', 'amountDecrement']),
   },
 };
 </script>

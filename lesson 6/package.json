@@ -32,16 +32,11 @@
     "env": {
       "node": true
     },
-    "extends": [
-      "plugin:vue/vue3-essential",
-      "@vue/airbnb"
-    ],
+    "extends": ["plugin:vue/vue3-essential"],
     "parserOptions": {
       "parser": "babel-eslint"
     },
-    "rules": {
-      "no-param-reassign": ["error"]
-    }
+    "rules": {}
   },
   "browserslist": [
     "> 1%",

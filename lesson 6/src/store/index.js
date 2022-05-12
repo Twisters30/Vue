@@ -1,4 +1,3 @@
-/* eslint-disable */
 import Vuex from 'vuex';
 import products from '@/data/products';
 
@@ -48,12 +47,6 @@ const store = new Vuex.Store({
     },
   },
   getters: {
-    belowAmount(state) {
-      return state.cartProduct
-        .forEach((el) => {
-          if (el.amount < 1) el.amount = 1;
-        });
-    },
     cartDetailProduct(state) {
       return state.cartProduct.map((item) => ({
         ...item,
