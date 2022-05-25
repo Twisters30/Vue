@@ -125,6 +125,7 @@ const store = new Vuex.Store({
         })
     },
     deleteProduct(context, productId) {
+      context.commit('deleteCartProduct', productId);
       return axios
         .delete(API_BASE_URL + `/api/baskets/products`, {
           params: {
@@ -135,7 +136,6 @@ const store = new Vuex.Store({
           }
         })
         .then((response) => {
-          context.commit('deleteCartProduct', productId);
           context.commit('updateCartProductsData', response.data.items);
         })
         .catch(() => {
