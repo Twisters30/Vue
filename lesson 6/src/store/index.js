@@ -38,7 +38,7 @@ const store = new Vuex.Store({
       const item = state.cartProduct
         .find((product) => product.productId === productId);
       if (item) {
-        item.amount = +amount;
+        item.amount = amount;
       }
     },
     deleteCartProduct(state, productId) {
