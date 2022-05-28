@@ -122,6 +122,7 @@
           </div>
 
           <button
+            v-if="$store.state.cartProduct.length"
             :disabled="orderSending"
             class="cart__button button button--primery"
             type="submit"
