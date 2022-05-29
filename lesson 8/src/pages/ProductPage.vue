@@ -257,6 +257,9 @@ export default {
         this.productAdded = true;
         this.productAddSending = false;
       })
+      .catch(() => {
+        this.productAddSending = false;
+      })
     },
     loadProduct() {
       this.productLoading = true;
